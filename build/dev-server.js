@@ -23,6 +23,15 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+var data = require('../music-data.json')
+var apiRouters = express.Router()
+apiRouters.get('/music-data' , function (rep, res) {
+    res.json({
+      errorno: 0,
+      musicData: data.musicData
+    })
+})
+app.use('/api',apiRouters)
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
