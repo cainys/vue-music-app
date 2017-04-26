@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from './vuex/store'
 
+// 引入px与rem的换算
+require('./assets/js/equ.js')
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

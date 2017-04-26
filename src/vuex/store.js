@@ -10,18 +10,26 @@ const state = {
     isAnimation: false,
     isShowMiniMusic: false,
     isShowAbout: false,
-    linkBorderIndex: '',
+    linkBorderIndex: 0,
     DOM: {},
     audio: {
         name: '',
         scr: '',
         musicImgSrc: '',
         index: 0
-    }
+    },
+    items: [
+            {text: '学习', url: '/music-list'},
+            {text: '发现', url: '/find'},
+            {text: '一个', url: '/social'}
+        ]
 }
 const mutations = {
     showAsideMenu (state) {
         state.isShowAsideMenu = !state.isShowAsideMenu
+    },
+    changeLinkBorderIndex (state, index) {
+        state.linkBorderIndex = index
     }
 }
 const actions = {}

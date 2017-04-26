@@ -6,13 +6,28 @@
             <span @click="showSearch" class="search"><i class="icon-search"></i></span>
         </div>
         <div class="tab">
-
+            <div v-for="(item,index) in items" :class="{link:linkBorderIndex == index}" class="item" @click="changeLinkBorderIndex(index)">
+                <router-link :to="item.url">{{item.text}}</router-link>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 export default{
-    name: 'vHader'
+    name: 'vHader',
+    computed: {
+        ...mapState(['linkBorderIndex', 'items', 'skinColor', 'isShowAsideMenu'])
+    },
+    methods: {
+        changeLinkBorderIndex (index) {
+            console.log(index)
+            this.$store.commit('changeLinkBorderIndex', index)
+        },
+        showAsideMenu () {
+            this.$store.commit('showAsideMenu')
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -59,6 +74,30 @@ export default{
                 display:inline-block;
                 cursor:pointer;
             }
+        }
+    }
+    .tab{
+        display: flex;
+        border-bottom: 1px solid #9E9E9E;
+        a{
+            display:inline-block;
+            width:50%;
+        }
+        a::after{
+            background-color: rgba(255, 255, 255, .2);
+            height: 1px;
+            bottom: -2px;
+        }
+        .item{
+            display: inline-block;
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .link{
+            font-weight: blod;
+            color: #bdbdbd;
+            border-bottom: 1px solid #fff;
         }
     }
 }
