@@ -13,6 +13,9 @@ export default {
   name: 'app',
   components: {
     VHeader, SideMenu
+  },
+  beforeCreate () {
+    this.$store.dispatch('getData')
   }
 }
 </script>
