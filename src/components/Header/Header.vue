@@ -3,7 +3,7 @@
         <div class="name">
             <span @click="showAsideMenu" class="func"><i class="icon-func"></i></span>
             <p>网易云</p>
-            <span @click="showSearch" class="search"><i class="icon-search"></i></span>
+            <span @click="" class="search"><i class="icon-search"></i></span>
         </div>
         <div class="tab">
             <div v-for="(item,index) in items" :class="{link:linkBorderIndex == index}" class="item" @click="changeLinkBorderIndex(index)">

@@ -1,52 +1,63 @@
 <template>
-    <div class="footer" v-show="isShowMiniMusic" :style="{backgroundColor:skinColor}">
-        <div class="mini-music">
-            <div class="music-img">
-                <img @click="" ref="img" :src="audio.musicImgSrc || (musicData[0] && musicData[0].musicImgSrc) || defaultImg" alt="img"  />
-            </div>
-            <div class="music-name">
-                <p>{{audio.name || (musicData[0] && musicData[0].name)}}</p>
-                <div class="process">
-                    <span class="start"></span>
-                    <div class="process-bar" ref="processBar" @click="" @touchmove="" @touchend="">
-                        <div ref="now" class="now" :style="{width:(now / native.duration).tofixed(3)*100+'%'}"></div>
-                    </div>
-                    <span class="end">{{totalTime}}</span>
-                </div>
-            </div>
-            <div class="music-control"></div>
+
+  <transition name="fade">
+    <div v-show="isShowMiniMusic" :style="{backgroundColor: skinColor}" class="footer">
+      <div class="mini-music">
+        <div class="music-img">
+          <img @click="showPlay" ref="img" v-bind:src="audio.musicImgSrc || (musicData[0]&&musicData[0].musicImgSrc) || defaultImg" alt="microzz.com">
         </div>
+        <div class="music-name">
+          <p @click="showPlay">{{audio.name || (musicData[0]&&musicData[0].name) || 'Powered by microzz.com'}}</p>
+          <div class="progress">
+            <span class="start">{{transformTime(now)}}</span>
+            <div @click="changeTime($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)" ref="progressBar" class="progress-bar">
+              <div class="now" ref="now" :style="{width: (now / nativeAudio.duration).toFixed(3)*100 + '%'}"></div>
+            </div>
+            <span class="end" v-text="totalTime"></span>
+          </div>
+        </div>
+        <div class="music-control">
+          <i @click="play()" v-bind:class="[isPlaying ? pauseIcon : playIcon]"></i>
+        </div>
+      </div>
     </div>
+
+  </transition>
+
 </template>
+
 <script>
 import { mapState } from 'vuex'
-export default{
-    computed: {
-        ...mapState(['isPlaying', 'isShowAsideMenu', 'isShowMiniMusic', 'audio', 'DOM', 'musicData', 'skinColor'])
-    },
-    mounted () {
-        this.nativeAudio = document.querySelector('audio')
-        this.nativeAudio.addEventListener('play', () => {
-        this.totalTime = this.transformTime(this.nativeAudio.duration)
+export default {
+  mounted () {
+    this.nativeAudio = document.querySelector('audio')
+    // console.log(this.nativeAudio)
+    this.nativeAudio.addEventListener('play', () => {
+      console.log(this.nativeAudio.duration)
+      this.totalTime = this.transformTime(this.nativeAudio.duration)
+      this.now = this.nativeAudio.currentTime
+
+      setInterval(() => {
         this.now = this.nativeAudio.currentTime
-        setInterval(() => {
-            this.now = this.nativeAudio.currentTime
-        }, 1000)
-        })
-    },
-    data () {
+      }, 1000)
+    })
+  },
+  computed: {
+    ...mapState(['isPlaying', 'isShowAsideMenu', 'isShowMiniMusic', 'audio', 'DOM', 'musicData', 'skinColor'])
+  },
+  data () {
     return {
-        playIcon: 'play-icon',
-        pauseIcon: 'pause-icon',
-        now: 0,
-        nativeAudio: {},
-        totalTime: '0:00',
-        defaultImg: 'https://microzz.com/img/avatar.jpg'
-        }
+      playIcon: 'play-icon',
+      pauseIcon: 'pause-icon',
+      now: 0,
+      nativeAudio: {},
+      totalTime: '0:00'
+      // defaultImg: 'https://microzz.com/img/avatar.jpg'
+    }
   },
   methods: {
     play () {
-      this.$store.commit('play', !this.isPlaying)
+      this.$store.commit('play')
       !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play()
     },
     showPlay () {
@@ -87,8 +98,9 @@ export default{
     }
 
   }
-  }
+}
 </script>
+
 <style lang="scss" scoped>
 .fade-enter-active {
   transition: all .3s ease-in-out;
@@ -101,13 +113,15 @@ export default{
   opacity: 0;
 }
   .footer {
+    width: 100%;
+    
+    /*position: fixed;
+    left: 0;
+    bottom: 0;*/
     background: #B72712;
     width: 100%;
     height: 70px;
     text-align: center;
-    // position: fixed;
-    // bottom: 0;
-
     .mini-music {
       display: flex;
       height: 70px;
@@ -141,7 +155,6 @@ export default{
           line-height: 40px;
           overflow: hidden;
           white-space: nowrap;
-          // cursor: pointer;
         }
         .progress {
           position: absolute;
@@ -151,12 +164,10 @@ export default{
           span.start {
             position: absolute;
             left: 6px;
-            // padding-right: 5px;
           }
           span.end {
             position: absolute;
             right: 4px;
-            // padding-left: 5px;
           }
           @media screen and(min-width: 600px) {
             span.start {
@@ -183,7 +194,6 @@ export default{
               left: 0;
               display: inline-block;
               max-width: 100%;
-              // width: 70%;
               height: 5px;
               background-color: #31c27c;
             }
