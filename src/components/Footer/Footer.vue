@@ -31,7 +31,6 @@ import { mapState } from 'vuex'
 export default {
   mounted () {
     this.nativeAudio = document.querySelector('audio')
-    // console.log(this.nativeAudio)
     this.nativeAudio.addEventListener('play', () => {
       console.log(this.nativeAudio.duration)
       this.totalTime = this.transformTime(this.nativeAudio.duration)
