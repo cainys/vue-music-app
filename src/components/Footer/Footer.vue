@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 <template lang="html">
+=======
+<template>
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
 
   <transition name="fade">
     <div v-show="isShowMiniMusic" :style="{backgroundColor: skinColor}" class="footer">
       <div class="mini-music">
         <div class="music-img">
+<<<<<<< HEAD
           <img @click="showPlay" ref="img" v-bind:src="audio.musicImgSrc">
+=======
+          <img @click="showPlay" ref="img" v-bind:src="audio.musicImgSrc || (musicData[0]&&musicData[0].musicImgSrc) || defaultImg" alt="microzz.com">
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
         </div>
         <div class="music-name">
           <p @click="showPlay">{{audio.name || (musicData[0]&&musicData[0].name) || 'Powered by microzz.com'}}</p>
@@ -27,6 +35,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
 export default {
   mounted () {
@@ -35,12 +44,24 @@ export default {
     this.nativeAudio.addEventListener('play', () => {
       this.totalTime = this.transformTime(this.nativeAudio.duration)
       this.now = this.nativeAudio.currentTime
+=======
+import { mapState } from 'vuex'
+export default {
+  mounted () {
+    this.nativeAudio = document.querySelector('audio')
+    this.nativeAudio.addEventListener('play', () => {
+      console.log(this.nativeAudio.duration)
+      this.totalTime = this.transformTime(this.nativeAudio.duration)
+      this.now = this.nativeAudio.currentTime
+
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
       setInterval(() => {
         this.now = this.nativeAudio.currentTime
       }, 1000)
     })
   },
   computed: {
+<<<<<<< HEAD
     isPlaying () {
       return this.$store.state.isPlaying
     },
@@ -63,6 +84,9 @@ export default {
       return this.$store.state.skinColor
     }
 
+=======
+    ...mapState(['isPlaying', 'isShowAsideMenu', 'isShowMiniMusic', 'audio', 'DOM', 'musicData', 'skinColor'])
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
   },
   data () {
     return {
@@ -70,16 +94,26 @@ export default {
       pauseIcon: 'pause-icon',
       now: 0,
       nativeAudio: {},
+<<<<<<< HEAD
       totalTime: '0:00',
       defaultImg: 'https://microzz.com/img/avatar.jpg'
+=======
+      totalTime: '0:00'
+      // defaultImg: 'https://microzz.com/img/avatar.jpg'
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
     }
   },
   methods: {
     play () {
+<<<<<<< HEAD
       console.log(this.audio)
       this.$store.commit('play')
       !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play()
       console.log(this.isPlaying)
+=======
+      this.$store.commit('play')
+      !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play()
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
     },
     showPlay () {
       if (this.isShowAsideMenu) {
@@ -134,13 +168,24 @@ export default {
   opacity: 0;
 }
   .footer {
+<<<<<<< HEAD
+=======
+    width: 100%;
+    
+    /*position: fixed;
+    left: 0;
+    bottom: 0;*/
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
     background: #B72712;
     width: 100%;
     height: 70px;
     text-align: center;
+<<<<<<< HEAD
     // position: fixed;
     // bottom: 0;
 
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
     .mini-music {
       display: flex;
       height: 70px;
@@ -174,7 +219,10 @@ export default {
           line-height: 40px;
           overflow: hidden;
           white-space: nowrap;
+<<<<<<< HEAD
           // cursor: pointer;
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
         }
         .progress {
           position: absolute;
@@ -184,12 +232,18 @@ export default {
           span.start {
             position: absolute;
             left: 6px;
+<<<<<<< HEAD
             // padding-right: 5px;
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
           }
           span.end {
             position: absolute;
             right: 4px;
+<<<<<<< HEAD
             // padding-left: 5px;
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
           }
           @media screen and(min-width: 600px) {
             span.start {
@@ -216,7 +270,10 @@ export default {
               left: 0;
               display: inline-block;
               max-width: 100%;
+<<<<<<< HEAD
               // width: 70%;
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
               height: 5px;
               background-color: #31c27c;
             }
