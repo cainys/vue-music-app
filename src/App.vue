@@ -1,26 +1,15 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
     <!--主界面-->
     <transition name="show">
-      <div v-show="isShowIndex">
+      <div class="index" v-show="isShowIndex">
         <v-header></v-header>
         <side-menu></side-menu>
         <router-view></router-view>
         <v-footer></v-footer>
       </div>
     </transition>
-
     <audio v-bind:src="audio.src || (musicData[0]&&musicData[0].src) || defaultSrc" v-bind:autoplay="isPlaying" ref="audio"></audio>
-=======
-    <div class="index" v-show="isShowIndex">
-      <v-header></v-header>
-      <side-menu></side-menu>
-      <router-view></router-view>
-      <v-footer></v-footer>
-    </div>
-    <audio :scr="audio.src || (musicData[0]&&musicData[0].src) || defaultSrc" v-bind:autoplay="isPlaying" ref="audio" />
->>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
   </div>
 </template>
 
