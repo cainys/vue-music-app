@@ -44,18 +44,8 @@ const mutations = {
     play (state) {
         state.isPlaying = !state.isPlaying
     },
-<<<<<<< HEAD
     findDOM (state, payload) {
         state.DOM[payload.name] = payload.dom
-=======
-<<<<<<< HEAD
-    findDOM (state, payload) {
-        state.DOM[payload.name] = payload.dom
-=======
-    findDOM (state, playload) {
-        state.DOM[playload.name] = playload.dom
->>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
->>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
     }
 }
 const actions = {
