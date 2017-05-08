@@ -22,7 +22,7 @@
                         </ul>
                         <ul>
                             <li @click.stop.prevent="$store.commit('showIndex', false)"><i class="icon-skin"></i>个性换肤</li>
-                            <li @click="showAbout"><i class="aboutme"></i>关于</li>
+                            <li @click=""><i class="aboutme"></i>关于</li>
                         </ul>
                     </div>
                 </div>            

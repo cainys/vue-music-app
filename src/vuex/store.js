@@ -12,7 +12,7 @@ const state = {
     isShowAsideMenu: false,
     isPlaying: false,
     isAnimation: false,
-    isShowMiniMusic: false,
+    isShowMiniMusic: true,
     isShowAbout: false,
     linkBorderIndex: 0,
     DOM: {},
@@ -40,6 +40,17 @@ const mutations = {
         state.audio.src = state.musicData[index].src
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc
         state.audio.index = state.musicData[index].index
+    },
+    play (state) {
+        state.isPlaying = !state.isPlaying
+    },
+<<<<<<< HEAD
+    findDOM (state, payload) {
+        state.DOM[payload.name] = payload.dom
+=======
+    findDOM (state, playload) {
+        state.DOM[playload.name] = playload.dom
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
     }
 }
 const actions = {
@@ -59,6 +70,9 @@ const actions = {
                 commit('toggleMusic', 0)
             })
         })
+    },
+    play ({ commit, state }) {
+        commit('play')
     }
 }
 const getters = {}
