@@ -24,33 +24,25 @@ export default {
     VHeader, SideMenu, VFooter
   },
   computed: {
-<<<<<<< HEAD
     ...mapState(['isShowIndex', 'audio', 'musicData', 'isPlaying'])
   },
   data () {
     return {
       defaultSrc: 'http://m2.music.126.net/K1SFXCvWf8BO9VEpSvx2ew==/7967061257205150.mp3'
     }
-=======
-    ...mapState(['audio', 'isShowIndex', 'musicData', 'isPlaying', 'DOM'])
->>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
   },
   beforeCreate () {
     this.$store.dispatch('getData')
   },
   mounted () {
-<<<<<<< HEAD
     this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio})
-=======
-    this.$store.commit('findDOM', {'name': 'audio', dom: this.$refs.audio})
->>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
   }
 }
 </script>
 
 <style lang='scss'>
 @import './common/style/base.scss';
-<<<<<<< HEAD
+
 .show-enter-active {
   transition: all .4s ease;
 }
@@ -61,10 +53,7 @@ export default {
   transform: translateX(-350px);
   opacity: 0;
 }
-#app{
-  position:relative;
-  height:100%;
-=======
+
 
 #app .index{
   position: relative;
@@ -72,6 +61,5 @@ export default {
   flex-direction: column;
   width: 100%;
   height: 100%;
->>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
 }
 </style>
