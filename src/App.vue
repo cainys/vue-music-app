@@ -24,25 +24,47 @@ export default {
     VHeader, SideMenu, VFooter
   },
   computed: {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
     ...mapState(['isShowIndex', 'audio', 'musicData', 'isPlaying'])
   },
   data () {
     return {
       defaultSrc: 'http://m2.music.126.net/K1SFXCvWf8BO9VEpSvx2ew==/7967061257205150.mp3'
     }
+<<<<<<< HEAD
+=======
+=======
+    ...mapState(['audio', 'isShowIndex', 'musicData', 'isPlaying', 'DOM'])
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
   },
   beforeCreate () {
     this.$store.dispatch('getData')
   },
   mounted () {
+<<<<<<< HEAD
     this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio})
+=======
+<<<<<<< HEAD
+    this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio})
+=======
+    this.$store.commit('findDOM', {'name': 'audio', dom: this.$refs.audio})
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
   }
 }
 </script>
 
 <style lang='scss'>
 @import './common/style/base.scss';
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
 .show-enter-active {
   transition: all .4s ease;
 }
@@ -53,7 +75,14 @@ export default {
   transform: translateX(-350px);
   opacity: 0;
 }
+<<<<<<< HEAD
 
+=======
+#app{
+  position:relative;
+  height:100%;
+=======
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
 
 #app .index{
   position: relative;
@@ -61,5 +90,9 @@ export default {
   flex-direction: column;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
+=======
+>>>>>>> ea9dd706f4d5800167cd258948346bfb98f2e907
+>>>>>>> 4fff009f9deb8d1be359384a9a52edbe29727fb3
 }
 </style>
