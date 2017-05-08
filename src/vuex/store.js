@@ -12,7 +12,7 @@ const state = {
     isShowAsideMenu: false,
     isPlaying: false,
     isAnimation: false,
-    isShowMiniMusic: false,
+    isShowMiniMusic: true,
     isShowAbout: false,
     linkBorderIndex: 0,
     DOM: {},
@@ -40,6 +40,12 @@ const mutations = {
         state.audio.src = state.musicData[index].src
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc
         state.audio.index = state.musicData[index].index
+    },
+    play (state) {
+        state.isPlaying = !state.isPlaying
+    },
+    findDOM (state, payload) {
+        state.DOM[payload.name] = payload.dom
     }
 }
 const actions = {
