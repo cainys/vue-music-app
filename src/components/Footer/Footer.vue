@@ -56,7 +56,7 @@ export default {
   methods: {
     play () {
       console.log(this.audio)
-      this.$store.commit('play')
+      this.$store.commit('play', !this.isPlaying)
       !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play()
       console.log(this.isPlaying)
     },

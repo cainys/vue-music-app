@@ -2,7 +2,7 @@
     <div class="music-list">
         <div class="music-item" v-for="(item, index) in musicData">
             <img :src="item.musicImgSrc" alt="music" class="music-img" />
-            <span @click="" class="music-name">{{(index+1) + '.&nbsp;' + item.name}}</span>
+            <span @click="toggleMusic(index)" class="music-name">{{(index+1) + '.&nbsp;' + item.name}}</span>
             <span class="del-icon"></span>
         </div>
     </div>
@@ -12,7 +12,31 @@ import { mapState } from 'vuex'
 export default {
     name: 'MusicList',
     computed: {
-        ...mapState(['musicData'])
+        ...mapState(['musicData', 'isPlaying', 'DOM'])
+    },
+    methods: {
+        // toggleMusic (index) {
+        //     if (this.$store.state.audio.index === index) {
+        //         console.log(index + '' + this.$store.state.audio.index)
+        //         console.log(this.DOM.audio.paused)
+        //         this.DOM.audio.paused ? this.DOM.audio.play() : this.DOM.audio.pause()
+        //         this.$store.commit('play', !this.isPlaying)
+        //     } else {
+        //         this.DOM.audio.play()
+        //         this.$store.commit('play', true)
+        //     }
+        //     this.$store.commit('toggleMusic', index)
+        // }
+        toggleMusic (index) {
+            if (this.$store.state.audio.index === index) {
+                this.DOM.audio.paused ? this.DOM.audio.play() : this.DOM.audio.pause()
+                this.$store.commit('play', !this.isPlaying)
+            } else {
+                this.DOM.audio.play()
+                this.$store.commit('play', true)
+            }
+            this.$store.commit('toggleMusic', index)
+        }
     }
 }
 </script>

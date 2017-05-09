@@ -7,7 +7,7 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 const state = {
     musicData: [],
-    skinColor: localStorage || '#B72712',
+    skinColor: localStorage.skinColor || '#B72712',
     isShowIndex: true,
     isShowAsideMenu: false,
     isPlaying: false,
@@ -41,8 +41,8 @@ const mutations = {
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc
         state.audio.index = state.musicData[index].index
     },
-    play (state) {
-        state.isPlaying = !state.isPlaying
+    play (state, flag) {
+        state.isPlaying = flag
     },
     findDOM (state, payload) {
         state.DOM[payload.name] = payload.dom
