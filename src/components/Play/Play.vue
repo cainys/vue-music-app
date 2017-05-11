@@ -21,7 +21,7 @@
                     </ul>
                 </div>
             </transition>
-            <img :src="audio.musicImgSrc || musicData[0]&&musicData[0].musicImgSrc" :alt="audio.name || musicData[0]&&musicData[0].name" />
+            <img @click="isShowMusicList = false" :src="audio.musicImgSrc || musicData[0]&&musicData[0].musicImgSrc" :alt="audio.name || musicData[0]&&musicData[0].name" />
             <div class="img">
                 <img :src="audio.musicImgSrc || musicData[0]&&musicData[0].musicImgSrc" :alt="audio.name || musicData[0]&&musicData[0].name" />
             </div>
