@@ -57,8 +57,7 @@ export default {
 #app{
   position:relative;
   height:100%;
-
-#app .index{
+ .index{
   position: relative;
   display: flex;
   flex-direction: column;

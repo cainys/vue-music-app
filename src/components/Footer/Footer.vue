@@ -4,7 +4,7 @@
     <div v-show="isShowMiniMusic" :style="{backgroundColor: skinColor}" class="footer">
       <div class="mini-music">
         <div class="music-img">
-          <img @click="showPlay" ref="img" v-bind:src="audio.musicImgSrc">
+          <img @click="showPlay" ref="img" v-bind:src="audio.musicImgSrc || (musicData[0]&&musicData[0].musicImgSrc)">
         </div>
         <div class="music-name">
           <p @click="showPlay">{{audio.name || (musicData[0]&&musicData[0].name) || 'Powered by microzz.com'}}</p>
@@ -39,6 +39,7 @@ export default {
         this.now = this.nativeAudio.currentTime
       }, 1000)
     })
+    console.log(this.audio)
   },
   computed: {
     ...mapState(['isPlaying', 'isShowAsideMenu', 'isShowMiniMusic', 'audio', 'DOM', 'musicData', 'skinColor'])
