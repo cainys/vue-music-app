@@ -17,7 +17,7 @@
                 <!--<div class="music-list" v-show="isShowMusicList">-->
                 <div class="music-list" ref="list" v-show="isShowMusicList">
                     <ul>
-                        <li @click="toggleMusic(index)" v-for="(item,index) in musicData" :class="{activeColor:index===audio.index}">{{index+1}} - {{item.name}}</li>
+                        <li @click="toggleMusic(index)" v-for="(item,index) in musicData" :class="{activeColor:index===audio.index}">{{index+1}} &nbsp; {{item.name}}</li>
                     </ul>
                 </div>
             </transition>
@@ -57,9 +57,21 @@ export default{
     computed: {
         ...mapState(['skinColor', 'audio', 'musicData', 'isPlaying', 'DOM'])
     },
-    mounted () {
-        this.nativeAudio = document.querySelector('audio')
-        this.nativeAudio.addEventListener('play', () => {
+    // mounted () {
+    //     this.nativeAudio = document.querySelector('audio')
+    //     this.nativeAudio.addEventListener('play', () => {
+    //         this.totalTime = this.transformTime(this.nativeAudio.duration)
+    //         this.now = this.nativeAudio.currentTime
+    //         setInterval(() => {
+    //             this.now = this.nativeAudio.currentTime
+    //         }, 1000)
+    //         this.now = this.nativeAudio.currentTime
+    //         console.log('1')
+    //     })
+    // },
+      mounted () {
+            this.nativeAudio = document.querySelector('audio')
+            this.nativeAudio.addEventListener('play', () => {
             this.totalTime = this.transformTime(this.nativeAudio.duration)
             this.now = this.nativeAudio.currentTime
             setInterval(() => {
@@ -67,8 +79,8 @@ export default{
             }, 1000)
             this.now = this.nativeAudio.currentTime
             console.log('1')
-        })
-    },
+            })
+        },
     data () {
         return {
             now: 0,
@@ -84,10 +96,12 @@ export default{
             m = m.toString().length === 1 ? ('0' + m) : m
             s = Math.round(time % 60)
             s = s.toString().length === 1 ? ('0' + s) : s
-            console.log(m + ':' + s)
+            // console.log(m + ':' + s)
             return m + ':' + s
         },
         toggleMusic (index) {
+            this.$store.commit('play', false)
+            this.DOM.audio.pause()
             this.$store.commit('toggleMusic', index)
             this.$store.commit('play', true)
             this.isShowMusicList = false
@@ -224,7 +238,7 @@ export default{
                 width:100%;
                 height:45%;
                 z-index:10;
-                background:rgba(255,255,255,1);
+                background:rgba(255,255,255,.9);
                 transition: all .8s ease;
                 .fade-enter-active{
                     transition: all .8s ease;
@@ -286,6 +300,7 @@ export default{
             .play{
                 flex: 1;
                 display: flex;
+                flex-direction: row;
                 justify-content: center;
                 align-items: center;
 

@@ -38,6 +38,8 @@ export default {
   },
   mounted () {
     this.$store.commit('findDOM', {name: 'audio', dom: this.$refs.audio})
+    this.$refs.audio.addEventListener('ended', () => { this.next() })
+    this.$refs.audio.addEventListener('error', () => { this.next() })
   }
 }
 </script>

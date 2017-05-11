@@ -39,7 +39,7 @@ const mutations = {
         state.audio.name = state.musicData[index].name
         state.audio.src = state.musicData[index].src
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc
-        state.audio.index = state.musicData[index].index
+        state.audio.index = index
     },
     play (state, flag) {
         state.isPlaying = flag
@@ -64,6 +64,7 @@ const actions = {
             }).then(() => {
                 commit('toggleMusic', 0)
             })
+            resolve()
         })
     },
     play ({ commit, state }) {
