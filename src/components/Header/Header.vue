@@ -27,6 +27,9 @@ export default{
         showAsideMenu () {
             this.$store.commit('showAsideMenu')
         }
+    },
+    mounted () {
+        console.log(this.linkBorderIndex)
     }
 }
 </script>
@@ -35,7 +38,7 @@ export default{
     background-color: #B72712;
     color:white;
     width: 100%;
-    flex:1;
+
     .name{
         display: flex;
         justify-content: space-between;

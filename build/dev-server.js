@@ -1,3 +1,4 @@
+'use strict'
 require('./check-versions')()
 
 var config = require('../config')
@@ -10,6 +11,7 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
+var http = require('http')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
@@ -25,10 +27,44 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var data = require('../music-data.json')
 var apiRouters = express.Router()
+// 获取歌曲列表
 apiRouters.get('/music-data' , function (rep, res) {
     res.json({
       errno: 0,
       musicData: data.musicData
+    })
+})
+// 获取热门歌手
+apiRouters.get('/hot', function (req, res) {
+    let hotArr = ['张杰', '赵雷', '李健', '林志炫', '张碧晨', '梁博', '周笔畅', '张靓颖', '陈奕迅', '周杰伦', '王力宏', 'TFBoys', '李玉刚', '魏晨', '薛之谦', '刘德华']
+    let hot =Array(6)
+    for (let i = 0; i<hot.length; i++) {
+      let length = hotArr.length;
+      let random = Math.floor(Math.random() * length)
+      hot[i] = hotArr[random]
+      hotArr.splice(random, 1)
+    }
+    res.json(hot)
+})
+apiRouters.get('/search/:num/:name', (req, res) => {
+  let num = req.params.num
+  let name = req.params.name
+  function search (n, keywords) {
+    return new Promise((resolve, reject) => {
+      let searchResult = ''
+      let url = encodeURI('http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n='+ n +'&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w='+ keywords)
+      http.get(url, response => {
+        response.on('data', data => {
+          searchResult += data
+        });
+        response.on('end', () => {
+          resolve(searchResult)
+        })
+      })
+    })
+  }
+  search(num, name).then(searchResult => {
+      res.json(JSON.parse(searchResult))
     })
 })
 app.use('/api',apiRouters)

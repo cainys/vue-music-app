@@ -66,7 +66,7 @@ export default {
         return
       }
       this.$store.commit('showIndex', false)
-      this.$store.commit('showMiniMusic', false)
+      // this.$store.commit('showMiniMusic', false)
     },
     changeTime (event) {
       let progressBar = this.$refs.progressBar
@@ -114,8 +114,7 @@ export default {
   opacity: 0;
 }
   .footer {
-    width: 100%;
-    
+    width: 100%; 
     /*position: fixed;
     left: 0;
     bottom: 0;*/

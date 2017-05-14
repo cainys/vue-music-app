@@ -3,12 +3,15 @@
     <!--主界面-->
     <transition name="show">
       <div class="index" v-show="isShowIndex">
-        <v-header v-show="false"></v-header>
-        <side-menu v-show="false"></side-menu>
-        <router-view v-show="false"></router-view>
-        <v-footer v-show="false"></v-footer>
-        <play></play>
+        <v-header></v-header>
+        <side-menu></side-menu>
+        <router-view></router-view>
+        <v-footer></v-footer>
+        <!--<play></play>-->
       </div>
+    </transition>
+    <transition name="showIndex">
+      <play v-show="!isShowIndex"></play>
     </transition>
     <audio v-bind:src="audio.src || (musicData[0]&&musicData[0].src) || defaultSrc" v-bind:autoplay="isPlaying" ref="audio"></audio>
   </div>
@@ -60,11 +63,11 @@ export default {
   position:relative;
   height:100%;
  .index{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

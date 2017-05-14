@@ -24,11 +24,16 @@ const state = {
     },
     items: [
             {text: '学习', url: '/music-list'},
-            {text: '发现', url: '/find'},
-            {text: '一个', url: '/social'}
+            {text: '发现', url: '/find'}
         ]
 }
 const mutations = {
+    showIndex (state, flag) {
+        state.isShowIndex = flag
+    },
+    deleteMusic (state, index) {
+        state.musicData.splice(index, 1)
+    },
     showAsideMenu (state) {
         state.isShowAsideMenu = !state.isShowAsideMenu
     },

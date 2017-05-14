@@ -27,7 +27,7 @@
                     </div>
                 </div>            
             </div>
-        <div class="mask" @click="showAsideMenu" ></div>
+            <div class="mask" @click="showAsideMenu" ></div>
         </div>
 
     </transition>
@@ -73,10 +73,14 @@ export default{
     right:0;
     top:0;
     display: flex;
-    z-index:1;
+    z-index:10;
     .aside{
-        width: 60%;
+        height: 100%;
+        flex: 6;
+        display: flex;
+        flex-direction: column;
         min-width:192px;
+        background: red;
         .info{
             padding:20px 0 10px 10px;
             background: #B72712;
@@ -92,7 +96,7 @@ export default{
         .setting{
             position: relative;
             flex:5;
-            height: 100%;
+            /*height: 100%;*/
             background: #eee;
             box-shadow:2px 0 5px darkgray;
             .content{
@@ -107,14 +111,19 @@ export default{
             }
         }
     }
+    .mask{
+        flex: 4;
+        height: 100%;
+        background: rgba(0, 0, 0, .3);    
+    }
     
 }
-.mask{
+/*.mask{
     width: 40%;
     height: 100%;
     background: rgba(0, 0, 0, .3);
     
-}
+}*/
 
 i{
     display: inline-block;

@@ -2,7 +2,7 @@
     <div class="play">
         <header :style="{backgroundColor: skinColor}" class="header">
             <div class="back">
-                <div class="icon-back"><i @click=""></i></div>
+                <div class="icon-back"><i @click="showIndex()"></i></div>
             </div>
             <div class="title">
                 <div class="name">{{audio.name || musicData[0]&&musicData[0].name}}</div>
@@ -73,6 +73,7 @@ export default{
             this.nativeAudio = document.querySelector('audio')
             this.nativeAudio.addEventListener('play', () => {
             this.totalTime = this.transformTime(this.nativeAudio.duration)
+            console.log(this.totalTime)
             this.now = this.nativeAudio.currentTime
             setInterval(() => {
                 this.now = this.nativeAudio.currentTime
@@ -90,6 +91,9 @@ export default{
         }
     },
     methods: {
+        showIndex () {
+            this.$store.commit('showIndex', true)
+        },
         transformTime (time) {
             let m, s
             m = Math.floor(time / 60)
@@ -189,6 +193,7 @@ export default{
                 position:absolute;
                 width:100%;
                 bottom:10px;
+                left: 0;
                 display: flex;
                 justify-content:space-between;
                 align-items:center;
@@ -303,8 +308,8 @@ export default{
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-
                 .icon-play i{
+                    /*margin-top:10px; */
                     display: inline-block;
                     width: 36px;
                     height: 36px;
