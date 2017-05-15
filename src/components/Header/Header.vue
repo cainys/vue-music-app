@@ -3,7 +3,7 @@
         <div class="name">
             <span @click="showAsideMenu" class="func"><i class="icon-func"></i></span>
             <p>音乐播放器</p>
-            <span @click="" class="search"><i class="icon-search"></i></span>
+            <span @click="$router.push('/find')" class="search"><i class="icon-search"></i></span>
         </div>
         <div class="tab">
             <div v-for="(item,index) in items" :class="{link:linkBorderIndex == index}" class="item" @click="changeLinkBorderIndex(index)">
@@ -22,6 +22,7 @@ export default{
     methods: {
         changeLinkBorderIndex (index) {
             console.log(index)
+            this.$store.commit('showMiniMusic', true)
             this.$store.commit('changeLinkBorderIndex', index)
         },
         showAsideMenu () {

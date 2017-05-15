@@ -23,7 +23,7 @@ const state = {
         index: 0
     },
     items: [
-            {text: '学习', url: '/music-list'},
+            {text: '列表', url: '/music-list'},
             {text: '发现', url: '/find'}
         ]
 }
@@ -45,6 +45,23 @@ const mutations = {
         state.audio.src = state.musicData[index].src
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc
         state.audio.index = index
+    },
+    playMusic (state, payload) {
+      state.audio.name = payload.name
+      state.audio.src = payload.src
+      state.audio.musicImgSrc = payload.imgSrc
+      state.isPlaying = true
+    },
+    addMusic (state, payload) {
+      for (let music of state.musicData) {
+        if (JSON.stringify(music) === JSON.stringify(payload)) {
+          return
+        }
+      }
+      state.musicData.unshift(payload)
+    },
+    showMiniMusic (state, flag) {
+      state.isShowMiniMusic = flag
     },
     play (state, flag) {
         state.isPlaying = flag
