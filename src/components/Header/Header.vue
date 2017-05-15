@@ -2,7 +2,7 @@
     <div :style="{backgroundColor:skinColor}" class="header">
         <div class="name">
             <span @click="showAsideMenu" class="func"><i class="icon-func"></i></span>
-            <p>网易云</p>
+            <p>音乐播放器</p>
             <span @click="" class="search"><i class="icon-search"></i></span>
         </div>
         <div class="tab">
